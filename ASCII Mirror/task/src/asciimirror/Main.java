@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         System.out.println("Input the file path:");
         Scanner scanner = new Scanner(System.in);
         FilePath filePathModel = new FilePath(scanner.nextLine());
@@ -29,6 +29,4 @@ public class Main {
             System.out.println("File not found");
         }
     }
-
-
 }

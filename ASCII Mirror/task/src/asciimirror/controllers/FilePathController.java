@@ -4,7 +4,6 @@ import asciimirror.models.FilePath;
 import asciimirror.views.FilePathView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class FilePathController extends Controller<FilePath> {
     public FilePathController(FilePath model, FilePathView view) {
