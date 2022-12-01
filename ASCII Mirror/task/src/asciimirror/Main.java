@@ -4,23 +4,28 @@ import asciimirror.controllers.AsciiImageController;
 import asciimirror.models.AsciiImage;
 import asciimirror.views.AsciiImageView;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Input the file path:");
+        Scanner scanner = new Scanner(System.in);
+        String filePath = scanner.nextLine();
+        System.out.println(filePath);
+
         AsciiImage model = new AsciiImage(
                 new StringBuilder("""
-                                _______\s
-                               < hello >
-                                -------\s
-                        ^__^   /       \s
-                _______/(oo)  /        \s
-            /\\/(       /(__)           \s
-               | w----||               \s
-               ||     ||               \s
-            """));
+                            ^__^
+                    _______/(oo)
+                /\\/(       /(__)
+                   | w----||   \s
+                   ||     ||   \s
+                   """));
 
         AsciiImageView view = new AsciiImageView();
         AsciiImageController controller = new AsciiImageController(model, view);
+
         controller.updateView();
     }
 
