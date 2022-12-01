@@ -1,32 +1,33 @@
 package asciimirror;
 
-import asciimirror.controllers.AsciiImageController;
-import asciimirror.models.AsciiImage;
-import asciimirror.views.AsciiImageView;
+import asciimirror.controllers.FileController;
+import asciimirror.controllers.FilePathController;
+import asciimirror.models.FilePath;
+import asciimirror.views.FilePathView;
+import asciimirror.views.FileView;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         System.out.println("Input the file path:");
         Scanner scanner = new Scanner(System.in);
-        String filePath = scanner.nextLine();
-        System.out.println(filePath);
-
-        AsciiImage model = new AsciiImage(
-                new StringBuilder("""
-                            ^__^
-                    _______/(oo)
-                /\\/(       /(__)
-                   | w----||   \s
-                   ||     ||   \s
-                   """));
-
-        AsciiImageView view = new AsciiImageView();
-        AsciiImageController controller = new AsciiImageController(model, view);
-
-        controller.updateView();
+        FilePath filePathModel = new FilePath(scanner.nextLine());
+        FilePathView filePathView = new FilePathView();
+        FilePathController filePathController = new FilePathController(
+                filePathModel,
+                filePathView);
+        FileController fileController = new FileController(
+                filePathController.getFile(),
+                new FileView()
+        );
+        try {
+            fileController.updateView();
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("File not found");
+        }
     }
 
 
