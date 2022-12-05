@@ -12,4 +12,6 @@ public interface Printable<T> {
      * @param printable Object we want to print
      */
     void print(T printable) throws FileNotFoundException;
+
+    void printTwice(T printable) throws FileNotFoundException;
 }

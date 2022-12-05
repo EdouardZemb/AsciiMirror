@@ -24,7 +24,7 @@ public class Main {
                 new FileView()
         );
         try {
-            fileController.updateView();
+            fileController.updateViewDouble();
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("File not found");
         }
