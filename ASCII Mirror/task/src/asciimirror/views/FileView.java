@@ -21,10 +21,35 @@ public class FileView extends View<File> {
             fileLines.add(nextLine);
             maxLength = Math.max(maxLength, nextLine.length());
         }
-        StringBuilder stringBuilder = new StringBuilder();
+        List<String> formattedFileLines = new ArrayList<>();
         for (String fileLine : fileLines) {
             String formattedLine = String.format("%-" + maxLength + "s", fileLine);
-            stringBuilder.append(formattedLine + " | " + formattedLine + "\n");
+            formattedFileLines.add(formattedLine);
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String formattedFileLine : formattedFileLines) {
+            char[] characterList = formattedFileLine.toCharArray();
+            for (int i = 0; i < characterList.length; i++) {
+                char c = characterList[i];
+                switch (c) {
+                    case '>' -> characterList[i] = '<';
+                    case '<' -> characterList[i] = '>';
+                    case '[' -> characterList[i] = ']';
+                    case ']' -> characterList[i] = '[';
+                    case '{' -> characterList[i] = '}';
+                    case '}' -> characterList[i] = '{';
+                    case '(' -> characterList[i] = ')';
+                    case ')' -> characterList[i] = '(';
+                    case '/' -> characterList[i] = '\\';
+                    case '\\' -> characterList[i] = '/';
+                }
+            }
+            StringBuilder lineBuilder = new StringBuilder(String.valueOf(characterList));
+            stringBuilder
+                    .append(formattedFileLine)
+                    .append(" | ")
+                    .append(lineBuilder.reverse())
+                    .append("\n");
         }
         System.out.println(stringBuilder);
     }
